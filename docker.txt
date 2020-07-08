@@ -1,0 +1,19 @@
+FROM       : Allows to specfify the base image.
+RUN        : Allows to specify commands as its arguments and runs it to form the image
+             Unlike CMD : Run is used while making a Docker Image. yum install
+CMD        : It also executes a specific command however not at the time of Image build. It is used when a              container is created from this Image. Ex: echo "Hello World"
+EntryPoint : sets the concrete default application that is used very time a container is created from this              Image.
+ADD        : Copies files from Source to the Container's own file system at the set destination.
+ENV        : It's used to set environment variables
+WORKDIR    : It's used to set where the command defined with CMD is to be executed.
+EXPOSE     : Allows to specify Port numbers inside the container and the outside world.
+MAINTAINER : specify the name of the person who is maintaining this Image.
+USER       : Specify the User ID who will be using this Image or Container.
+VOLUME     : It's used to enable access from your container to the host machine. Custom path for all the              files from the container.
+
+ 
+docker build -t szohan11/demorepository:v1 .
+docker tag <Image ID> szohan11/demorepository:v1
+docker run -itd <Image ID> /bin/bash
+docker push szohan11/demorepository:v1
+docker pull szohan11/demorepository:v1
