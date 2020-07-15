@@ -1,0 +1,32 @@
+Terraform - Workspace and State
+
+Workspace - Space for all the Environment ex: Dev, Prod etc
+Remote State File : Locks the Code till terraform apply command is running from 1 user or developer.
+
+Workspace Commands: https://www.youtube.com/watch?v=JmfEKEYdxKU
+
+- We have "default" workspace by default.
+- terraform workspace list - shows the list of workspaces.
+- terraform workspace new prod - creates a new workspace named "prod"
+- terraform workspace new dev- creates a new workspace named "dev"
+***This creates specific STATE files for "dev" and "prod" accordingly.***
+- terraform workspace show - shows the current workspace we are working in.
+- terraform workspace select prod - allows to move to "prod" workspace.
+
+We can create 2 different var files for Dev and Prod and use it with the script.
+- dev.tfvars and prod.tfvars
+----terraform apply -var-file dev.tfvars
+----terraform apply -var-file prod.tfvars
+
+**** To create backend file for S3 **** 
+terraform {
+   backend "s3"
+      bucket = "bucketname"
+      key    = "location/of/the/destination
+      region = "us-west-1"
+      dynamodb_table = "Dynamo DB Table Name"
+}
+
+**** Remote State File using Dynamo DB ****
+GO to Dynamo DB - Tables - Create Table - Give the Table name - Primary Key should be - "LockID"
+----- Entry for this in the script is shown above.
